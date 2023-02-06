@@ -1,7 +1,7 @@
 package kr.co.damdaorder.jpa;
 
-import kr.co.damdaorder.dto.RequestDto;
-import kr.co.damdaorder.dto.ResponseDto;
+import kr.co.dto.RequestOrderDto;
+import kr.co.dto.ResponseOrderDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,19 +54,19 @@ public class OrderEntity {
         this.totalPrice = totalPrice;
     }
 
-    public static OrderEntity of(RequestDto.CREATE create){
+    public static OrderEntity of(RequestOrderDto.CREATE_ORDER createOrder){
         return OrderEntity.builder()
-                .orderCode(create.getOrderCode())
-                .productCode(create.getProductCode())
-                .identity(create.getIdentity())
-                .amount(create.getAmount())
-                .price(create.getPrice())
-                .totalPrice(create.getTotalPrice())
+                .orderCode(createOrder.getOrderCode())
+                .productCode(createOrder.getProductCode())
+                .identity(createOrder.getIdentity())
+                .amount(createOrder.getAmount())
+                .price(createOrder.getPrice())
+                .totalPrice(createOrder.getTotalPrice())
                 .build();
     }
 
-    public static ResponseDto.READ_ORDER_INFO of(OrderEntity orderEntity){
-        return ResponseDto.READ_ORDER_INFO.builder()
+    public static ResponseOrderDto.READ_ORDER_INFO of(OrderEntity orderEntity){
+        return ResponseOrderDto.READ_ORDER_INFO.builder()
                 .orderCode(orderEntity.orderCode)
                 .productCode(orderEntity.productCode)
                 .amount(orderEntity.amount)
@@ -75,11 +75,11 @@ public class OrderEntity {
                 .build();
     }
 
-    public static List<ResponseDto.READ_ORDER_INFO> of(List<OrderEntity> orderEntities){
-        List<ResponseDto.READ_ORDER_INFO> readOrderInfos = new ArrayList<>();
+    public static List<ResponseOrderDto.READ_ORDER_INFO> of(List<OrderEntity> orderEntities){
+        List<ResponseOrderDto.READ_ORDER_INFO> readOrderInfos = new ArrayList<>();
 
         for(OrderEntity orderEntity : orderEntities){
-            ResponseDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
+            ResponseOrderDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
             readOrderInfos.add(readOrderInfo);
         }
 

@@ -1,7 +1,7 @@
 package kr.co.damdaorder.service;
 
-import kr.co.damdaorder.dto.RequestDto;
-import kr.co.damdaorder.dto.ResponseDto;
+import kr.co.dto.RequestOrderDto;
+import kr.co.dto.ResponseOrderDto;
 import kr.co.damdaorder.jpa.OrderEntity;
 import kr.co.damdaorder.jpa.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +19,15 @@ public class OrderService {
 
     /**
      * order and order info read
-     * @param create order product
+     * @param createOrder order product
      * @return order info
      */
-    public ResponseDto.READ_ORDER_INFO createOrder(RequestDto.CREATE create){
-        isOrderCode(create.getOrderCode());
-        final OrderEntity orderEntity = OrderEntity.of(create);
+    public ResponseOrderDto.READ_ORDER_INFO createOrder(RequestOrderDto.CREATE_ORDER createOrder){
+        isOrderCode(createOrder.getOrderCode());
+        final OrderEntity orderEntity = OrderEntity.of(createOrder);
 
         orderRepository.save(orderEntity);
-        final ResponseDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
+        final ResponseOrderDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
 
         return  readOrderInfo;
     }
@@ -37,21 +37,21 @@ public class OrderService {
      * @param identity find idenity
      * @return List read orderinfos
      */
-    public List<ResponseDto.READ_ORDER_INFO> findOrderInfosByIdentity(String identity){
+    public List<ResponseOrderDto.READ_ORDER_INFO> findOrderInfosByIdentity(String identity){
         final List<OrderEntity> orderEntities = orderRepository.findByIdentity(identity);
-        final List<ResponseDto.READ_ORDER_INFO> readOrderInfos = OrderEntity.of(orderEntities);
+        final List<ResponseOrderDto.READ_ORDER_INFO> readOrderInfos = OrderEntity.of(orderEntities);
 
         return readOrderInfos;
     }
 
     /**
-     *  find OrdrEntity Service
+     * find OrdrEntity Service
      * @param orderCode find Order Code
      * @return read order info one
      */
-    public ResponseDto.READ_ORDER_INFO findOrderInfoByOrderCode(String orderCode){
+    public ResponseOrderDto.READ_ORDER_INFO findOrderInfoByOrderCode(String orderCode){
         final OrderEntity orderEntity = findOrderByOrderCode(orderCode);
-        final ResponseDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
+        final ResponseOrderDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
 
         return readOrderInfo;
     }

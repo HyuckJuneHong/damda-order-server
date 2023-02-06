@@ -1,4 +1,4 @@
-package kr.co.damdaorder.infra.config;
+package kr.co.damdaorder.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
