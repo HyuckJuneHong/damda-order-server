@@ -58,6 +58,12 @@ dependencies {
 
     //feign client
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    //zipkin
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin'
+
+    //sleuth
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth'
 }
 
 dependencyManagement {

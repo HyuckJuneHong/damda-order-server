@@ -23,11 +23,13 @@ public class OrderService {
      * @return order info
      */
     public ResponseDto.READ_ORDER_INFO createOrder(RequestDto.CREATE_ORDER createOrder){
+        log.info("Before add orders data");
         isOrderCode(createOrder.getOrderCode());
         final OrderEntity orderEntity = OrderEntity.of(createOrder);
 
         orderRepository.save(orderEntity);
         final ResponseDto.READ_ORDER_INFO readOrderInfo = OrderEntity.of(orderEntity);
+        log.info("Åfter added orders data");
 
         return  readOrderInfo;
     }
@@ -38,8 +40,10 @@ public class OrderService {
      * @return List read orderinfos
      */
     public List<ResponseDto.READ_ORDER_INFO> findOrderInfosByIdentity(String identity){
+        log.info("Before retrieve orders data");
         final List<OrderEntity> orderEntities = orderRepository.findByIdentity(identity);
         final List<ResponseDto.READ_ORDER_INFO> readOrderInfos = OrderEntity.of(orderEntities);
+        log.info("Add retrieve orders data");
 
         return readOrderInfos;
     }
