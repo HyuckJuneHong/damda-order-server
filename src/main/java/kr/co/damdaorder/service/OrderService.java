@@ -2,6 +2,8 @@ package kr.co.damdaorder.service;
 
 import kr.co.damdaorder.dto.RequestDto;
 import kr.co.damdaorder.dto.ResponseDto;
+import kr.co.damdaorder.error.exception.BusinessLogicException;
+import kr.co.damdaorder.error.model.ErrorCode;
 import kr.co.damdaorder.jpa.OrderEntity;
 import kr.co.damdaorder.jpa.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +69,7 @@ public class OrderService {
      */
     private OrderEntity findOrderByOrderCode(String orderCode){
         return orderRepository.findByOrderCode(orderCode)
-                .orElseThrow(() -> new RuntimeException("No exist orderCode"));
+                .orElseThrow(() -> new BusinessLogicException(ErrorCode.WRONG_ORDER_CODE));
     }
 
     /**
@@ -76,6 +78,6 @@ public class OrderService {
      */
     private void isOrderCode(String orderCode){
         if(orderRepository.existsByOrderCode(orderCode))
-            throw new RuntimeException("Duplicated OrderCode");
+            throw new BusinessLogicException(ErrorCode.DUPLICATED_ORDER_CODE);
     }
 }

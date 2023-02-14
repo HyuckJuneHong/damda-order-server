@@ -2,8 +2,8 @@ package kr.co.damdaorder.controller;
 
 import kr.co.damdaorder.dto.RequestDto;
 import kr.co.damdaorder.dto.ResponseDto;
+import kr.co.damdaorder.error.model.ResponseFormat;
 import kr.co.damdaorder.service.OrderService;
-import kr.co.error.model.ResponseFormat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

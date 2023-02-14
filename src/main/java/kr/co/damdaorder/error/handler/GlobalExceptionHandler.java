@@ -1,9 +1,9 @@
-package kr.co.damdaorder.handler;
+package kr.co.damdaorder.error.handler;
 
-import kr.co.error.exception.BusinessLogicException;
-import kr.co.error.exception.UserDefineException;
-import kr.co.error.model.ErrorResponse;
-import kr.co.error.model.ResponseFormat;
+import kr.co.damdaorder.error.exception.BusinessLogicException;
+import kr.co.damdaorder.error.exception.UserDefineException;
+import kr.co.damdaorder.error.model.ErrorResponse;
+import kr.co.damdaorder.error.model.ResponseFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

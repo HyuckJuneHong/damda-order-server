@@ -30,8 +30,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation project(':damda-core')
-
     //config
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
 
@@ -60,10 +58,13 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     //zipkin
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin', version: '2.2.8.RELEASE'
 
     //sleuth
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth'
+
+//    //micrometer prometheus
+//    implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus'
 }
 
 dependencyManagement {
